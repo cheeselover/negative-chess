@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<jnlp
+  spec="1.0+"
+  codebase="http://www.gamadu.com/games/spaceshipwarrior" href="spaceshipwarrior.jnlp">
+  <information>
+    <title>Spaceship Warrior</title>
+    <vendor>GAMADU</vendor>
+    <homepage href="http://gamadu.com"/>
+    <description>Test game for Artemis</description>
+    <description kind="short">Space shooter</description>
+  </information> 
+  
+  <security>
+	<all-permissions/>
+  </security>
+    
+  <resources>
+    <j2se href="http://java.sun.com/products/autodl/j2se" version="1.6+" max-heap-size="128m"/>
+    <jar href="spaceshipwarrior.jar" main="true"/>  
+    <jar href="spaceshipwarrior-resources.jar"/>  
+    <jar href="artemis.jar"/>  
+
+    <jar href="gdx-backend-lwjgl.jar"/>
+    <jar href="gdx-tools.jar"/>
+    <jar href="gdx.jar"/>
+    <jar href="gdx-openal.jar"/>
+  </resources>  
+ 
+ <resources os="Windows">
+    <nativelib href="http://gamadu.com/games/spaceshipwarrior/gdx-backend-lwjgl-natives.jar"/>      
+    <nativelib href="gdx-natives.jar"/>      
+ </resources>
+ 
+  <resources os="Linux">
+    <nativelib href="http://gamadu.com/games/spaceshipwarrior/gdx-backend-lwjgl-natives.jar"/>      
+    <nativelib href="gdx-natives.jar"/>      
+ </resources>
+ 
+  <resources os="Mac OS">
+    <nativelib href="http://gamadu.com/games/spaceshipwarrior/gdx-backend-lwjgl-natives.jar"/>      
+    <nativelib href="gdx-natives.jar"/>      
+ </resources>
+  <application-desc main-class="com.gamadu.spaceshipwarrior.SpaceshipWarrior"/>
+</jnlp>

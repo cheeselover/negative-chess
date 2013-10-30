@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Slick2D">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/jar/artemis-a609b2076aacc0ef5ecf0b390205d01bb88ceae2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jar/jinput.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jar/jogg-0.0.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jar/jorbis-0.0.15.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jar/lwjgl.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jar/lwjgl_util.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jar/slick.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
