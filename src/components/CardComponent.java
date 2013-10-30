@@ -8,10 +8,12 @@ public class CardComponent extends Component {
 	
 	private String type;
 	private Color color;
+	private boolean hidden;
 	
-	public CardComponent(String type, Color color){
+	public CardComponent(String type, Color color, boolean hidden){
 		this.type = type;
 		this.color = color;
+		this.hidden = hidden;
 	}
 	
 	public String getType() {
@@ -20,6 +22,14 @@ public class CardComponent extends Component {
 	
 	public Color getColor() {
 		return color;
+	}
+
+	public boolean isHidden(){
+		return hidden;
+	}
+
+	public void setHidden(boolean hidden){
+		this.hidden = hidden;
 	}
 	
 }

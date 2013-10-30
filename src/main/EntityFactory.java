@@ -29,12 +29,12 @@ public class EntityFactory {
 		return e;
 	}
 	
-	public static Entity createCard(World world, float x, float y, String type, Color color){
+	public static Entity createCard(World world, float x, float y, String type, Color color, boolean hidden){
 		Entity e = world.createEntity();
 		
 		e.addComponent(new Transform(x, y));
 		e.addComponent(new SpatialForm("CARD"));
-		e.addComponent(new CardComponent(type, color));
+		e.addComponent(new CardComponent(type, color, hidden));
 		
 		world.getManager(GroupManager.class).add(e, "CARDS");
 		

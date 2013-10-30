@@ -13,7 +13,7 @@ import com.artemis.World;
 import com.artemis.managers.GroupManager;
 import com.artemis.managers.TagManager;
 
-public class PuzzleCannon extends BasicGame {
+public class NegativeChess extends BasicGame {
 
 	GameContainer container;
 	World world;
@@ -21,7 +21,7 @@ public class PuzzleCannon extends BasicGame {
 	BoardRenderSystem boardRenderSystem; 
 	
 	public static void main(String[] args) throws SlickException{
-		AppGameContainer app = new AppGameContainer(new PuzzleCannon("TEST"));
+		AppGameContainer app = new AppGameContainer(new NegativeChess("TEST"));
 		
 		app.setDisplayMode(733, 523, false);
 		app.setTargetFrameRate(60);
@@ -29,14 +29,20 @@ public class PuzzleCannon extends BasicGame {
 		app.start();
 	}
 	
-	public PuzzleCannon(String title) {
+	public NegativeChess(String title) {
 		super(title);
 	}
 
 	@Override
 	public void init(GameContainer gc) throws SlickException {
 		this.container = gc;
-		renderSystem = new RenderSystem(gc);
+
+		try{
+			renderSystem = new RenderSystem(gc);
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+
 		boardRenderSystem = new BoardRenderSystem(gc);
 		
 		world = new World();
@@ -52,16 +58,11 @@ public class PuzzleCannon extends BasicGame {
 		world.setSystem(new CollisionSystem());
 		world.setSystem(new SetBoundsSystem());
 		world.setSystem(new InputSystem(gc));
+		world.setSystem(new CardHandSystem());
 		
 		world.initialize();
 		
 		initBoard();
-		/*EntityFactory.createCard(world, 5, 5, "PLACE", Color.black).addToWorld();
-		EntityFactory.createCard(world, 5, 108, "PLACE", Color.black).addToWorld();
-		EntityFactory.createCard(world, 5, 211, "PLACE", Color.black).addToWorld();
-		EntityFactory.createCard(world, 5, 314, "PLACE", Color.black).addToWorld();
-		EntityFactory.createCard(world, 5, 417, "PLACE", Color.black).addToWorld();*/
-		
 	}
 	
 	@Override

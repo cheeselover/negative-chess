@@ -1,13 +1,5 @@
 package systems;
 
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-
-import spatials.Card;
-import spatials.Particle;
-import spatials.Spatial;
-import spatials.Tile;
-
 import com.artemis.Aspect;
 import com.artemis.ComponentMapper;
 import com.artemis.Entity;
@@ -16,20 +8,34 @@ import com.artemis.systems.EntityProcessingSystem;
 import com.artemis.utils.Bag;
 import components.SpatialForm;
 import components.Transform;
+import main.Constants;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.UnicodeFont;
+import spatials.Card;
+import spatials.Particle;
+import spatials.Spatial;
+import spatials.Tile;
+
+import java.awt.*;
+import java.io.IOException;
 
 public class RenderSystem extends EntityProcessingSystem {
 
 	private Graphics g;
 	private Bag<Spatial> spatials;
+	private UnicodeFont pixelFont;
 	
 	@Mapper ComponentMapper<SpatialForm> sfm;
 	@Mapper ComponentMapper<Transform> tm;
 	
 	@SuppressWarnings("unchecked")
-	public RenderSystem(GameContainer gc) {
+	public RenderSystem(GameContainer gc) throws IOException, FontFormatException, SlickException{
 		super(Aspect.getAspectForAll(Transform.class, SpatialForm.class));
 		this.g = gc.getGraphics();
 		spatials = new Bag<>();
+		this.pixelFont = Constants.getPixelFont();
 	}
 
 	@Override
@@ -60,7 +66,7 @@ public class RenderSystem extends EntityProcessingSystem {
 		if("PARTICLE".equalsIgnoreCase(spatialFormFile)){
 			return new Particle(world, e);
 		} else if("CARD".equalsIgnoreCase(spatialFormFile)){
-			return new Card(world, e);
+			return new Card(world, e, pixelFont);
 		} else if("TILE".equalsIgnoreCase(spatialFormFile)){
 			return new Tile(world, e);
 		}

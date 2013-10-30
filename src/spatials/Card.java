@@ -18,40 +18,32 @@ public class Card extends Spatial {
 	Transform transform;
 	UnicodeFont pixelFont;
 	
-	public Card(World world, Entity owner) {
+	public Card(World world, Entity owner, UnicodeFont pixelFont) {
 		super(world, owner);
+		this.pixelFont = pixelFont;
 	}
 
 	@Override
 	public void initialize() {
 		this.card = world.getMapper(CardComponent.class).get(owner);
 		this.transform = world.getMapper(Transform.class).get(owner);
-
-		try{
-			pixelFont = new UnicodeFont(Font.createFont(Font.TRUETYPE_FONT, new File("res/pixel.ttf")).deriveFont(Font.PLAIN, 16));
-			pixelFont.getEffects().add(new ColorEffect(java.awt.Color.white));
-			pixelFont.addAsciiGlyphs();
-			pixelFont.loadGlyphs();
-		} catch(Exception e){
-			e.printStackTrace();
-		}
-		
-	
 	}
 
 	@Override
 	public void render(Graphics g) {
-		g.setColor(Color.white);
-		g.fillRoundRect(transform.getX(), transform.getY(), 100, 100, 5);
-		g.setColor(Color.black);
-		g.fillRoundRect(transform.getX() + 2, transform.getY() + 2, 96, 96, 5);
-		g.setColor(Color.white);
-		g.fillRoundRect(transform.getX() + 4, transform.getY() + 4, 92, 92, 5);
-		g.setColor(Color.black);
-		g.fillRect(transform.getX() + 23, transform.getY() + 8, 53, 20);
-		g.setColor(Color.white);
-		g.setFont(pixelFont);
-		g.drawString("INVERT", transform.getX() + 25, transform.getY() + 12);
+		if(!card.isHidden()){
+			g.setColor(card.getColor());
+			g.fillRoundRect(transform.getX(), transform.getY(), 100, 100, 5);
+			g.setColor((card.getColor() == Color.black) ? Color.white : Color.black);
+			g.fillRoundRect(transform.getX() + 2, transform.getY() + 2, 96, 96, 5);
+			g.setColor(card.getColor());
+			g.fillRoundRect(transform.getX() + 4, transform.getY() + 4, 92, 92, 5);
+			g.setColor((card.getColor() == Color.black) ? Color.white : Color.black);
+			g.fillRect(transform.getX() + 23, transform.getY() + 8, 53, 20);
+			g.setColor(card.getColor());
+			g.setFont(pixelFont);
+			g.drawString(card.getType(), transform.getX() + 25, transform.getY() + 12);
+		}
 	}
 
 }
